@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piano MIDI Maestro - Aprende Piano</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/themes/modern.css" id="theme-link">
+</head>
+<body>
+    <!-- Audio Loading Indicator -->
+    <div id="audio-loading-status" class="audio-loading" style="display:none;">
+        🎵 Cargando sonidos de piano... 0%
+    </div>
+
+    <!-- Header -->
+    <header class="app-header">
+        <div class="container">
+            <h1>🎹 Piano MIDI Maestro</h1>
+            <div class="header-controls">
+                <button id="midi-status" class="midi-status">
+                    <span class="status-indicator"></span>
+                    <span class="status-text">Conectando MIDI...</span>
+                </button>
+                <button id="settings-btn" class="icon-btn" title="Configuración">⚙️</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <nav class="game-modes">
+                <h2>Modos de Juego</h2>
+                <button class="mode-btn active" data-mode="notes">
+                    <span class="icon">🎵</span>
+                    <span class="label">Notas</span>
+                </button>
+                <button class="mode-btn" data-mode="chords">
+                    <span class="icon">🎼</span>
+                    <span class="label">Acordes</span>
+                </button>
+                <button class="mode-btn" data-mode="scales">
+                    <span class="icon">🎹</span>
+                    <span class="label">Escalas</span>
+                </button>
+                <button class="mode-btn" data-mode="intervals">
+                    <span class="icon">🎶</span>
+                    <span class="label">Intervalos</span>
+                </button>
+            </nav>
+
+            <div class="progress-panel">
+                <h3>Tu Progreso</h3>
+                <div class="stat-item">
+                    <span class="stat-label">Racha:</span>
+                    <span class="stat-value" id="streak">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Precisión:</span>
+                    <span class="stat-value" id="accuracy">0%</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Nivel:</span>
+                    <span class="stat-value" id="level">1</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Game Area -->
+        <section class="game-area">
+            <!-- Challenge Display -->
+            <div class="challenge-display">
+                <div class="challenge-header">
+                    <h2 id="challenge-title">Toca esta nota:</h2>
+                    <div class="timer" id="timer"></div>
+                </div>
+                <div class="challenge-content">
+                    <div class="note-display" id="note-display">
+                        <span class="note-main" id="note-main">Do</span>
+                        <span class="note-alt" id="note-alt">C</span>
+                    </div>
+                    <div class="hint-area" id="hint-area">
+                        <p class="hint-text">💡 Presiona la tecla blanca más a la izquierda</p>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback">
+                    <!-- Feedback messages will appear here -->
+                </div>
+            </div>
+
+            <!-- Piano Virtual -->
+            <div class="piano-container">
+                <canvas id="piano-canvas" width="1200" height="200"></canvas>
+                <div class="piano-controls">
+                    <button id="show-hints" class="control-btn active">
+                        <span>💡 Mostrar Ayudas</span>
+                    </button>
+                    <button id="play-sound" class="control-btn">
+                        <span>🔊 Reproducir Nota</span>
+                    </button>
+                    <button id="next-challenge" class="control-btn primary">
+                        <span>Siguiente ➡️</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Theory Panel -->
+            <div class="theory-panel" id="theory-panel">
+                <h3>📚 Teoría Musical</h3>
+                <div class="theory-content" id="theory-content">
+                    <p>Selecciona un modo para ver la teoría relacionada.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Settings Modal -->
+    <div class="modal" id="settings-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>⚙️ Configuración</h2>
+                <button class="close-btn" id="close-settings">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-group">
+                    <h3>🎨 Tema Visual</h3>
+                    <div class="theme-options">
+                        <button class="theme-btn active" data-theme="modern">
+                            <span class="theme-preview modern-preview"></span>
+                            <span>Moderno</span>
+                        </button>
+                        <button class="theme-btn" data-theme="colorful">
+                            <span class="theme-preview colorful-preview"></span>
+                            <span>Colorido</span>
+                        </button>
+                        <button class="theme-btn" data-theme="classic">
+                            <span class="theme-preview classic-preview"></span>
+                            <span>Clásico</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="setting-group">
+                    <h3>🎵 Notación Musical</h3>
+                    <div class="notation-options">
+                        <label class="radio-label">
+                            <input type="radio" name="notation" value="latin" checked>
+                            <span>Latina (Do, Re, Mi, Fa, Sol, La, Si)</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="notation" value="english">
+                            <span>Anglosajona (C, D, E, F, G, A, B)</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="notation" value="both">
+                            <span>Ambas (mostrar las dos)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="setting-group">
+                    <h3>🎮 Opciones de Juego</h3>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="timed-mode">
+                        <span>Modo Cronometrado</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="show-staff" checked>
+                        <span>Mostrar Pentagrama</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="auto-advance">
+                        <span>Avanzar Automáticamente</span>
+                    </label>
+                </div>
+
+                <div class="setting-group">
+                    <h3>🎹 Dispositivo MIDI</h3>
+                    <select id="midi-device-select" class="midi-select">
+                        <option value="">Detectando dispositivos...</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Modules -->
+    <script src="js/music-theory.js"></script>
+    <script src="js/notation.js"></script>
+    <script src="js/audio-engine.js"></script>
+    <script src="js/midi-controller.js"></script>
+    <script src="js/theme-manager.js"></script>
+    <script src="js/game-modes/notes-mode.js"></script>
+    <script src="js/game-modes/chords-mode.js"></script>
+    <script src="js/game-modes/scales-mode.js"></script>
+    <script src="js/game-modes/intervals-mode.js"></script>
+    <script src="js/ui-controller.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

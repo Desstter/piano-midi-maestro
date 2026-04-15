@@ -1,0 +1,142 @@
+/* ===================================
+   Theme: Colorful (Gamificado)
+   =================================== */
+
+:root {
+    /* Colors */
+    --primary-color: #667eea;
+    --secondary-color: #764ba2;
+    --accent-color: #f093fb;
+    --success-color: #4facfe;
+    --warning-color: #fa709a;
+    --bg-color: #f5f7fa;
+    --card-bg: #ffffff;
+    --text-color: #2d3748;
+    --text-secondary: #718096;
+    --border-color: #e2e8f0;
+
+    /* Shadows */
+    --shadow: 0 4px 20px rgba(102, 126, 234, 0.15);
+    --shadow-lg: 0 15px 40px rgba(102, 126, 234, 0.25);
+
+    /* Piano Keys */
+    --white-key: #ffffff;
+    --white-key-pressed: #f7fafc;
+    --black-key: #2d3748;
+    --black-key-pressed: #1a202c;
+    --key-border: #cbd5e0;
+    --key-highlight: rgba(102, 126, 234, 0.4);
+}
+
+body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.app-header {
+    background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%);
+    backdrop-filter: blur(10px);
+    border-bottom: 3px solid var(--primary-color);
+}
+
+.app-header h1 {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.mode-btn {
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.1);
+}
+
+.mode-btn.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    transform: translateX(5px) scale(1.02);
+}
+
+.mode-btn:hover {
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.2);
+}
+
+.stat-value {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.challenge-display {
+    background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%);
+    border: 2px solid rgba(102, 126, 234, 0.2);
+}
+
+.note-main {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: fadeInScale 0.5s ease, rainbow 3s ease-in-out infinite;
+}
+
+@keyframes rainbow {
+    0%, 100% {
+        filter: hue-rotate(0deg);
+    }
+    50% {
+        filter: hue-rotate(20deg);
+    }
+}
+
+.feedback-message.success {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    box-shadow: 0 4px 20px rgba(79, 172, 254, 0.4);
+}
+
+.feedback-message.error {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    box-shadow: 0 4px 20px rgba(250, 112, 154, 0.4);
+}
+
+.piano-container {
+    background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%);
+    border: 2px solid rgba(102, 126, 234, 0.2);
+}
+
+.control-btn.active,
+.control-btn.primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+    border: none;
+}
+
+.control-btn.active:hover,
+.control-btn.primary:hover {
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    transform: translateY(-3px);
+}
+
+.theory-panel {
+    background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%);
+    border: 2px solid rgba(102, 126, 234, 0.2);
+}
+
+.progress-panel {
+    background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%);
+    border: 2px solid rgba(102, 126, 234, 0.2);
+}
+
+/* Añadir efectos de partículas al completar desafíos */
+.challenge-display.success-animation {
+    animation: successPulse 0.6s ease;
+}
+
+@keyframes successPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+        box-shadow: 0 0 40px rgba(79, 172, 254, 0.6);
+    }
+}

@@ -1,0 +1,206 @@
+/* ===================================
+   Theme: Classic (Musical/Vintage)
+   =================================== */
+
+:root {
+    /* Colors */
+    --primary-color: #8b7355;
+    --secondary-color: #5d4e37;
+    --accent-color: #c19a6b;
+    --success-color: #6b8e23;
+    --warning-color: #cd853f;
+    --bg-color: #f5f5dc;
+    --card-bg: #fffef0;
+    --text-color: #3e2723;
+    --text-secondary: #795548;
+    --border-color: #d4af37;
+
+    /* Shadows */
+    --shadow: 0 3px 15px rgba(139, 115, 85, 0.15);
+    --shadow-lg: 0 10px 35px rgba(139, 115, 85, 0.25);
+
+    /* Piano Keys */
+    --white-key: #fffff0;
+    --white-key-pressed: #f5f5dc;
+    --black-key: #1c1c1c;
+    --black-key-pressed: #000000;
+    --key-border: #8b7355;
+    --key-highlight: rgba(139, 115, 85, 0.3);
+}
+
+body {
+    background: linear-gradient(135deg, #f5f5dc 0%, #e8d8c3 100%);
+    background-image:
+        linear-gradient(135deg, #f5f5dc 0%, #e8d8c3 100%),
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(139, 115, 85, 0.03) 2px,
+            rgba(139, 115, 85, 0.03) 4px
+        );
+}
+
+.app-header {
+    background: linear-gradient(135deg, #8b7355 0%, #5d4e37 100%);
+    border-bottom: 3px solid #d4af37;
+}
+
+.app-header h1 {
+    color: #f5f5dc;
+    font-family: 'Georgia', serif;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.midi-status {
+    background: rgba(245, 245, 220, 0.9);
+    border-color: #d4af37;
+}
+
+.icon-btn {
+    background: #d4af37;
+}
+
+.mode-btn {
+    background: linear-gradient(135deg, #fffef0 0%, #f5f5dc 100%);
+    border: 2px solid #d4af37;
+    box-shadow: 0 3px 10px rgba(139, 115, 85, 0.2);
+}
+
+.mode-btn.active {
+    background: linear-gradient(135deg, #8b7355 0%, #5d4e37 100%);
+    border-color: #d4af37;
+    box-shadow: 0 4px 15px rgba(139, 115, 85, 0.4);
+}
+
+.mode-btn.active .label {
+    color: #f5f5dc;
+}
+
+.progress-panel {
+    background: linear-gradient(135deg, #fffef0 0%, #f5f5dc 100%);
+    border: 2px solid #d4af37;
+}
+
+.stat-value {
+    color: #8b7355;
+    font-family: 'Georgia', serif;
+}
+
+.challenge-display {
+    background: linear-gradient(135deg, #fffef0 0%, #f5f5dc 100%);
+    border: 3px double #d4af37;
+    box-shadow: 0 5px 20px rgba(139, 115, 85, 0.2);
+}
+
+.challenge-header h2 {
+    font-family: 'Georgia', serif;
+    color: #5d4e37;
+}
+
+.note-main {
+    color: #8b7355;
+    font-family: 'Georgia', serif;
+    text-shadow: 2px 2px 4px rgba(139, 115, 85, 0.2);
+}
+
+.note-alt {
+    color: #795548;
+    font-family: 'Georgia', serif;
+}
+
+.hint-area {
+    background: rgba(212, 175, 55, 0.1);
+    border-left: 4px solid #d4af37;
+}
+
+.piano-container {
+    background: linear-gradient(135deg, #fffef0 0%, #f5f5dc 100%);
+    border: 3px solid #8b7355;
+    box-shadow:
+        0 5px 20px rgba(139, 115, 85, 0.3),
+        inset 0 2px 5px rgba(139, 115, 85, 0.1);
+}
+
+.control-btn {
+    background: linear-gradient(135deg, #fffef0 0%, #f5f5dc 100%);
+    border: 2px solid #d4af37;
+    font-family: 'Georgia', serif;
+}
+
+.control-btn.active,
+.control-btn.primary {
+    background: linear-gradient(135deg, #8b7355 0%, #5d4e37 100%);
+    color: #f5f5dc;
+    border-color: #d4af37;
+    box-shadow: 0 4px 15px rgba(139, 115, 85, 0.3);
+}
+
+.control-btn:hover {
+    background: linear-gradient(135deg, #f5f5dc 0%, #e8d8c3 100%);
+    border-color: #8b7355;
+}
+
+.control-btn.active:hover,
+.control-btn.primary:hover {
+    background: linear-gradient(135deg, #a08968 0%, #6b5d4f 100%);
+}
+
+.theory-panel {
+    background: linear-gradient(135deg, #fffef0 0%, #f5f5dc 100%);
+    border: 3px double #d4af37;
+}
+
+.theory-panel h3 {
+    font-family: 'Georgia', serif;
+    color: #5d4e37;
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #fffef0 0%, #f5f5dc 100%);
+    border: 3px solid #8b7355;
+}
+
+.setting-group h3 {
+    font-family: 'Georgia', serif;
+    color: #5d4e37;
+}
+
+/* Añadir textura de papel vintage */
+.challenge-display::before,
+.piano-container::before,
+.theory-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noise"><feTurbulence baseFrequency="0.9" numOctaves="4"/></filter><rect width="100" height="100" filter="url(%23noise)" opacity="0.03"/></svg>');
+    pointer-events: none;
+    border-radius: inherit;
+}
+
+.challenge-display,
+.piano-container,
+.theory-panel {
+    position: relative;
+}
+
+/* Pentagrama decorativo */
+.theory-panel::after {
+    content: '';
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 50px;
+    height: 40px;
+    background: repeating-linear-gradient(
+        0deg,
+        #d4af37,
+        #d4af37 1px,
+        transparent 1px,
+        transparent 8px
+    );
+    opacity: 0.3;
+}
